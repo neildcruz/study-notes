@@ -4,11 +4,11 @@
 
 ### Image
 
-An image is a filesystem and parameters to use at runtime. It doesn’t have state and never changes. 
+An image is a filesystem and parameters to use at runtime. It doesn’t have state and never changes.
 
 ### Container
 
-A container is a running instance of an image. 
+A container is a running instance of an image.
 
 
 ## Useful Docker commands
@@ -31,7 +31,7 @@ List all docker containers including stopped
 
 List all docker images
 
-`docker images` 
+`docker images`
 
 Remove all docker containers
 
@@ -39,11 +39,32 @@ Remove all docker containers
 
 Remove all docker images
 
-`docker rmi $(docker images -aq)`      
+`docker rmi $(docker images -aq)`
+
+- -f to force remove child images
 
 Test docker installation
 
-`docker run hello-world` 
+`docker run hello-world`
+
+
+### Creating custom docker images
+
+Build your own docker image from a Dockerfile
+
+`docker build -t <image-tag-name> <diretory path for dockerfile>`
+
+Taggging a container
+
+`docker tag <image-SHA> <username>/<image-name>:<version>`
+
+Login to docker hub
+
+`docker login`
+
+Push tagged image to docker hub
+
+`docker push <tagged-image>`
 
 
 ## Useful quick containers
@@ -54,8 +75,8 @@ Run Ubuntu bash terminal
 
 docker run -it ubuntu   /bin/bash
                  |          |
-                Name of   Name of  
-                ubuntu    command 
+                Name of   Name of
+                ubuntu    command
                 official  to run
                 image     after container
                           is loaded
@@ -71,5 +92,8 @@ Start a stopped container with terminal
 
 
 
+## Advanced commands
 
+Find child images of a particular image
 
+`docker inspect --format='{{.Id}} {{.Parent}}' $(docker images --filter since=<image SHA from docker images -a> -q)`
