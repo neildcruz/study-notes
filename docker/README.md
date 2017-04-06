@@ -101,3 +101,8 @@ Find child images of a particular image
 Remove <none> images
 
 `docker rmi $(docker images | grep "^<none>" | awk "{print $3}")` 
+
+
+Remove dangling images after building an image again with the same tag
+
+`docker rmi $(docker images -f "dangling=true" -q)` 
