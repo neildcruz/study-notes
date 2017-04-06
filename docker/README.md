@@ -97,3 +97,7 @@ Start a stopped container with terminal
 Find child images of a particular image
 
 `docker inspect --format='{{.Id}} {{.Parent}}' $(docker images --filter since=<image SHA from docker images -a> -q)`
+
+Remove <none> images
+
+`docker rmi $(docker images | grep "^<none>" | awk "{print $3}")` 
